@@ -17,7 +17,7 @@ echo "Namespace $NAMESPACE"
 
 status_code=$(curl -sSk -H "Authorization: Bearer $KUBE_TOKEN" \
     "https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT/apis/apps/v1beta2/namespaces/$NAMESPACE/deployments/bulletin-board-deployment" \
-    -X GET -o /dev/null -w "%{http_code}")
+    -X GET -o /dev/null --http1.1 -w "%{http_code}")
 
 if [ $status_code == 200 ]; then
   echo
